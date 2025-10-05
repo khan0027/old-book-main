@@ -7,10 +7,8 @@ import Signup from './components/Login&Signup/Signup'
 function App() {
 
   return (
-    <div className='bg-black flex flex-col gap-5 h-full '  >
+    <div className='bg-black flex flex-col gap-5 h-screen w-auto '  >
       <Navbar />
-      <Login />
-      {/* <Signup/> */}
     </div>
   )
 }

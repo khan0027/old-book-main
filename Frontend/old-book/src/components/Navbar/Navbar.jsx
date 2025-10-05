@@ -1,43 +1,116 @@
-import React from 'react'
+import { useState } from "react";
 import { FaBook } from "react-icons/fa6";
-import { useState } from 'react';
+import { MdOutlineLightMode } from "react-icons/md";
+import { CiDark } from "react-icons/ci";
+import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
+import { IoMdHome } from "react-icons/io";
+import { MdDashboard } from "react-icons/md";
+import { BiPurchaseTagAlt } from "react-icons/bi";
+import { FcAbout } from "react-icons/fc";
+import { IoLogInOutline } from "react-icons/io5";
+import { IoMdPersonAdd } from "react-icons/io";
 
 const Navbar = () => {
-    const [hovered, isHovered] = useState(true);
-    const [hovered1,isHovered1] = useState(false);
+    const [dark, setDark] = useState(false);
+    const [sidebar, setSidebar] = useState(true);
+    
+    const mode = dark ? "Light Mode" : "Dark Mode";
+
+    function modeToggle() {
+        setDark(!dark);
+    }
+
+    function sidebarHandler() {
+        setSidebar(!sidebar);
+    }
 
     return (
-        <div className='flex flex-row items-center justify-around p-4 gap-15 bg-gray-900 sticky top-0 z-20 '>
-            <div>
-                <FaBook color='white' size={26} />
-            </div>
-            <ul className='flex flex-row items-center justify-center text-white gap-8 text-lg '>
-                <li className='hover:text-blue-300' >Home</li>
-                <li className='hover:text-blue-300' >About</li>
-                <li className='hover:text-blue-300' >Pricing</li>
-                <li className='hover:text-blue-300' >Sell Books</li>
-                <li className='hover:text-blue-300' >Contact Us</li>
-            </ul>
-            <div className='text-white flex gap-5 rounded-md p-1 pl-2 pr-2  '>
-                <button className={`bg-blue-700 w-20  rounded-md text-black transition-all p-1 duration-300 ${hovered ? 'bg-blue-900 w-20 p-1  rounded-md text-white' : 'bg-transparent text-white'}`} 
+        <nav 
+            className={`
+                flex flex-col h-screen justify-between pt-4 pb-4 items-center 
+                duration-500 rounded-xl bg-blue-300 flex-wrap sticky top-4 left-4 mt-5 mb-5
                 
-                onMouseEnter={() => isHovered(true)&&isHovered1(false)}
-                onMouseLeave={() => isHovered(true)&&isHovered1(true)}
-                
+                ${sidebar ? "w-16" : "w-48"}
+            `}
+        >
+            {/* Header Section */}
+            <div className="w-full px-2">
+                <div 
+                    className="duration-500 flex justify-between items-center cursor-pointer p-2 hover:bg-blue-400 rounded-lg"
+                    onClick={sidebarHandler}
                 >
-                    Login
-                </button>
-                <button className={`w-20 transition-all border-2 border-white p-1 rounded-md duration-400 ${hovered1 ? 'bg-blue-900 text-white border-2 border-blue-900 rounded-md p-1':'bg-transparent text-white' }`}
-                
-                onMouseEnter={() => isHovered1(true)&&isHovered(false)}
-                onMouseLeave={() => isHovered1(false)&&isHovered(true)}
-                    
-                >
-                    Signup
-                </button>
+                    {!sidebar && (
+                        <div className="flex flex-col items-center">
+                            <span className="text-xl font-bold whitespace-nowrap font-serif  tracking-wider text-blue-800 drop-shadow-sm">
+                                Old Book
+                            </span>
+                            <div className="w-full h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 mt-1 rounded-full"></div>
+                        </div>
+                    )}
+                    {sidebar ? (
+                        <GoSidebarCollapse size={24} />
+                    ) : (
+                        <GoSidebarExpand size={24} />
+                    )}
+                </div>
             </div>
-        </div>
-    )
-}
 
-export default Navbar
+            {/* Navigation Links */}
+            <div className="w-full flex-1 flex justify-center items-center">
+                <ul className="flex flex-col justify-center items-start gap-6 w-full px-4">
+                    <li className="flex flex-row justify-start items-center w-full gap-3 cursor-pointer hover:bg-blue-400 p-2 rounded-lg transition-colors">
+                        <IoMdHome size={20} />
+                        {!sidebar && <span className="font-medium">Home</span>}
+                    </li>
+                    <li className="flex flex-row justify-start items-center w-full gap-3 cursor-pointer hover:bg-blue-400 p-2 rounded-lg transition-colors">
+                        <MdDashboard size={20} />
+                        {!sidebar && <span className="font-medium">Dashboard</span>}
+                    </li>
+                    <li className="flex flex-row justify-start items-center w-full gap-3 cursor-pointer hover:bg-blue-400 p-2 rounded-lg transition-colors">
+                        <BiPurchaseTagAlt size={20} />
+                        {!sidebar && <span className="font-medium">Buy Book</span>}
+                    </li>
+                    <li className="flex flex-row justify-start items-center w-full gap-3 cursor-pointer hover:bg-blue-400 p-2 rounded-lg transition-colors">
+                        <FaBook size={20} />
+                        {!sidebar && <span className="font-medium">Sell Book</span>}
+                    </li>
+                    <li className="flex flex-row justify-start items-center w-full gap-3 cursor-pointer hover:bg-blue-400 p-2 rounded-lg transition-colors">
+                        <FcAbout size={20} />
+                        {!sidebar && <span className="font-medium">About</span>}
+                    </li>
+                </ul>
+            </div>
+
+            {/* Theme Toggle */}
+            <div className="w-full px-2 mb-4">
+                <div 
+                    className="flex justify-center items-center cursor-pointer p-2 hover:bg-blue-400 rounded-lg transition-colors"
+                    onClick={modeToggle}
+                >
+                    <div className="flex items-center gap-3">
+                        {dark ? (
+                            <MdOutlineLightMode size={20} />
+                        ) : (
+                            <CiDark size={20} />
+                        )}
+                        {!sidebar && <span className="whitespace-nowrap font-medium">{mode}</span>}
+                    </div>
+                </div>
+            </div>
+
+            {/* Auth Buttons */}
+            <div className="flex flex-col gap-2 w-full px-2">
+                <button className="h-10 flex flex-row justify-center items-center gap-3 hover:bg-blue-400 rounded-lg transition-colors w-full">
+                    <IoLogInOutline size={20} />
+                    {!sidebar && <span className="font-medium">Login</span>}
+                </button>
+                <button className="h-10 flex flex-row justify-center items-center gap-3 hover:bg-blue-400 rounded-lg transition-colors w-full">
+                    <IoMdPersonAdd size={20} />
+                    {!sidebar && <span className="font-medium">Sign Up</span>}
+                </button>
+            </div>
+        </nav>
+    );
+};
+
+export default Navbar;
