@@ -27,8 +27,8 @@ const Navbar = () => {
     return (
         <nav 
             className={`
-                flex flex-col h-screen justify-between pt-4 pb-4 items-center 
-                duration-500 rounded-xl bg-blue-300 flex-wrap sticky top-4 left-4 mt-5 mb-5
+                flex flex-col h-163 justify-between pt-4 pb-4 items-center 
+                duration-500 rounded-xl bg-blue-300 flex-wrap sticky top-5 left-4 mt-5 mb-5
                 
                 ${sidebar ? "w-16" : "w-48"}
             `}
