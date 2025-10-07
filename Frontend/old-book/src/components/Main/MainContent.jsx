@@ -9,14 +9,6 @@ const MainContent = () => {
         <p>
             Here You Can buy and Sell Old books
         </p>
-        <div className='flex flex-row gap-4 items-center' >
-          <button className='pl-5 pr-5 pt-2 pb-2 border-1 border-black w-auto rounded-md hover:bg-gray-300 ' >
-            Login
-          </button>
-          <button className='pl-5 pr-5 pt-2 pb-2 border-1 border-black w-auto rounded-md hover:bg-gray-300  ' >
-            Signup
-          </button>
-        </div>
     </div>
   )
 }
