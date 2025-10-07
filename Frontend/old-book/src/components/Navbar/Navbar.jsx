@@ -42,7 +42,7 @@ const Navbar = () => {
       className={`
         flex flex-col h-screen justify-between py-4 items-center 
         duration-500 backdrop-blur-md border-r border-gray-400 sticky top-0
-        ${sidebar ? "w-20" : "w-52 bg-gray-200"}
+        ${sidebar ? "w-20 " : "w-52 backdrop-blur-md  "}
       `}
     >
       {/* Header Section */}
@@ -64,7 +64,7 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <div className="flex-1 flex flex-col justify-center items-center w-full">
-        <ul className="flex flex-col justify-center items-center gap-2 w-full">
+        <ul className="flex flex-col justify-center items-center gap-7 w-full">
           {navItems.map((item, idx) => (
             <li
               key={idx}
