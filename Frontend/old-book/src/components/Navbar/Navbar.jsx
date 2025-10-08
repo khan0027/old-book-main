@@ -42,7 +42,7 @@ const Navbar = () => {
       className={`
         flex flex-col h-screen justify-between py-4 items-center 
         duration-500 backdrop-blur-md border-r border-gray-400 sticky top-0
-        ${sidebar ? "w-20 " : "w-52 backdrop-blur-md  "}
+        ${sidebar ? "w-20 bg-gray-100" : "w-52 bg-gray-200  "}
       `}
     >
       {/* Header Section */}
